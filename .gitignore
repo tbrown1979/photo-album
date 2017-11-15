@@ -1,0 +1,40 @@
+*.class
+*.log
+
+# sbt specific
+.cache
+.history
+.lib/
+dist/*
+target/
+logs/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+.ensime*
+.idea/
+*.iml
+.ensime*
+*.hprof
+
+# emacs
+*~
+
+# Mock Server temporary certs that are to be deleted at sbt exit
+/*.pem
+/*.jks
+/tmp/
+
+# Emacs
+*~
+
+# Mac Filesytem
+.DS_Store
+
+/old/
+unit-test-times.txt
