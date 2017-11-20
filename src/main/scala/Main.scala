@@ -23,7 +23,5 @@ object Main extends App {
 
   private[this] val logger = org.log4s.getLogger
 
-  val readCommand = IO(readLine())
 
-  Stream.repeatEval(readCommand)
 }

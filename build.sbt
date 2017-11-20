@@ -33,5 +33,7 @@ libraryDependencies ++= Seq(
   "io.circe"       %% "circe-parser"         % circeVersion,
   "io.circe"       %% "circe-java8"          % circeVersion,
   "io.circe" %% "circe-generic-extras" % circeVersion,
-  "com.github.alexarchambault" %% "scalacheck-shapeless_1.13" % scalaCheckShapelessVersion % Test
+  "com.github.alexarchambault" %% "scalacheck-shapeless_1.13" % scalaCheckShapelessVersion % Test,
+  "eu.timepit" %% "refined"            % "0.8.4",
+  "eu.timepit" %% "refined-cats"       % "0.8.4" // optional
 )
