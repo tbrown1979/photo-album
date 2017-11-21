@@ -13,9 +13,8 @@ trait AlbumRetrievalAlgebra[F[_]] {
 }
 
 class AlbumRetrievalInterpreter(httpClient: Client[IO]) extends AlbumRetrievalAlgebra[IO] {
-  val baseUrl = Uri.uri("https://jsonplaceholder.typicode.com/photos")
+  val baseUrl: Uri = Uri.uri("https://jsonplaceholder.typicode.com/photos")
 
-  def getPhotos(albumId: RefinedTypes.ValidAlbumId): IO[List[Photo]] = {
+  def getPhotos(albumId: RefinedTypes.ValidAlbumId): IO[List[Photo]] =
     httpClient.expect[List[Photo]](baseUrl.withQueryParam("albumId", albumId.value.toString))(jsonOf[IO, List[Photo]])
-  }
 }

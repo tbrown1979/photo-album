@@ -8,7 +8,7 @@ import org.scalatest._
 
 import tbrown.album.RefinedTypes.ValidAlbumId
 
-class TestStuff extends WordSpec with Matchers {
+class AlbumServiceSpec extends WordSpec with Matchers {
 
   "Give back a photo, given a valid integer" in new context {
     val input = "5"
@@ -34,7 +34,7 @@ class TestStuff extends WordSpec with Matchers {
   trait context {
     def input: String
 
-    val testPhoto = Photo(AlbumId(1), PhotoId(1), Title("title"), PhotoUrl(Uri.uri("wwww.example.com")), ThumbnailUrl(Uri.uri("www.example.com")))
+    val testPhoto = Photo(1, 1, "title", "wwww.example.com", "www.example.com")
 
     val mockAlbumRetrieval = new AlbumRetrievalAlgebra[IO] {
       override def getPhotos(albumId: ValidAlbumId): IO[List[Photo]] = IO(List(testPhoto))

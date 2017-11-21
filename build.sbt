@@ -3,18 +3,14 @@ scalaVersion in ThisBuild := "2.11.8"
 val http4sVersion = "0.18.0-M5"
 val circeVersion = "0.9.0-M2"
 
-val pureConfigVersion = "0.7.0"
 val refinedVersion = "0.8.4"
 val scalaTestVersion = "3.0.4"
 val shapelessVersion = "2.3.2"
 
 name := "photo-album"
 
-resolvers += Resolver.sonatypeRepo("releases")
-
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
-
 libraryDependencies ++= Seq(
+  "co.fs2" %% "fs2-core" % "0.10.0-M8",
   "eu.timepit"    %% "refined"              % refinedVersion,
   "eu.timepit"    %% "refined-cats"         % refinedVersion,
   "io.circe"      %% "circe-generic"        % circeVersion,
