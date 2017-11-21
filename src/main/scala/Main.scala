@@ -1,27 +1,19 @@
 package tbrown.album
 
-import io.circe._
-import io.circe.generic.extras.auto._
-import io.circe.generic.auto._, io.circe.syntax._
+import cats.effect.IO
 
-
-import org.http4s._
-import org.http4s.EntityDecoder._
-import org.http4s.Query
-import org.http4s.client.Client
-
-import org.http4s.circe._
-
-import cats.effect.{Effect, IO}
 import fs2._
-//import org.http4s.client.blaze.PooledHttp1Client
-//import org.http4s.util.ExitCode
 
+import org.http4s.client.blaze.PooledHttp1Client
+import org.http4s.util.{ExitCode, StreamApp}
 
-object Main extends App {
-  import scala.io.StdIn._
+object Main extends StreamApp[IO] {
+  val httpClient = PooledHttp1Client[IO]()
 
-  private[this] val logger = org.log4s.getLogger
+  val cmdLine = new CommandLineInputOutputInterpreter
+  val photoAlbum = new AlbumRetrievalInterpreter(httpClient)
+  val service = new AlbumService(cmdLine, photoAlbum)
 
-
+  def stream(args: List[String], requestShutdown: IO[Unit]): Stream[IO, ExitCode] =
+    service.getAlbumsById.drain
 }
