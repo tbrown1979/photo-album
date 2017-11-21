@@ -7,7 +7,7 @@ import eu.timepit.refined.numeric.Interval
 import scala.util.control.NoStackTrace
 
 object RefinedTypes {
-  type ValidAlbumId = Int Refined Interval.ClosedOpen[W.`0`.T, W.`100`.T]
+  type ValidAlbumId = Int Refined Interval.Closed[W.`1`.T, W.`100`.T]
 }
 
 case class Photo(
